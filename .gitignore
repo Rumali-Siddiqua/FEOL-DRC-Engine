@@ -1,0 +1,14 @@
+# KLayout output files
+*.lyrdb
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# GDS files (too large for git)
+*.gds
+
+# OS files
+.DS_Store
+Thumbs.db

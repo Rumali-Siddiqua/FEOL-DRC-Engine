@@ -1,0 +1,42 @@
+pdk: GF180MCU
+
+layer_map:
+  COMP:  { layer: 22, datatype: 0 }
+  POLY2: { layer: 30, datatype: 0 }
+
+rules:
+  - id: DF.1a_LV
+    description: Minimum COMP width
+    layer: COMP
+    type: min_width
+    value: 0.22
+    unit: um
+
+  - id: DF.3_LV
+    description: Minimum COMP spacing
+    layer: COMP
+    type: min_spacing
+    value: 0.28
+    unit: um
+
+  - id: PL.1_LV
+    description: Minimum POLY2 width
+    layer: POLY2
+    type: min_width
+    value: 0.18
+    unit: um
+
+  - id: PL.2_LV
+    description: Minimum POLY2 spacing
+    layer: POLY2
+    type: min_spacing
+    value: 0.24
+    unit: um
+
+  - id: PL.5_LV
+    description: POLY2 must enclose COMP by minimum amount
+    layer_a: POLY2
+    layer_b: COMP
+    type: min_enclosure
+    value: 0.22
+    unit: um
