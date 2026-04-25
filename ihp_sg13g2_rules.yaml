@@ -1,0 +1,66 @@
+# =============================================================================
+# IHP SG13G2 — FEOL DRC Rule Configuration
+# =============================================================================
+# Author: Rumali Siddiqua — GSoC 2026
+#
+# Source: IHP-Open-PDK
+#   https://github.com/IHP-GmbH/IHP-Open-PDK
+#   Rule deck: ihp-sg13g2/libs.tech/klayout/tech/drc/rule_decks/feol/
+#
+# TECHNOLOGY-AGNOSTIC VALIDATION:
+#   This file demonstrates that the same feol_drc.py engine runs on IHP SG13G2
+#   with zero engine code changes — only this YAML config file changes.
+#
+# KEY DIFFERENCE FROM GF180:
+#   IHP rules operate directly on raw Activ and GatPoly layers (no derived
+#   layer filtering like GF180's not_interacting). This means the engine
+#   should achieve much higher XOR match accuracy on IHP than on GF180.
+#
+# LAYERS:
+#   Activ   = layer 1, datatype 0  (active/diffusion region — equivalent to COMP in GF180)
+#   GatPoly = layer 5, datatype 0  (polysilicon gate — equivalent to POLY2 in GF180)
+#
+# RULES IMPLEMENTED:
+#   Act.a  — Min. Activ width         : 0.15 um  (source: 5_5_activ.drc)
+#   Act.b  — Min. Activ space/notch   : 0.21 um  (source: 5_5_activ.drc)
+#   Gat.a  — Min. GatPoly width       : 0.13 um  (source: 5_8_gatpoly.drc)
+#   Gat.b  — Min. GatPoly space/notch : 0.18 um  (source: 5_8_gatpoly.drc)
+# =============================================================================
+
+pdk: IHP_SG13G2
+
+# ── Layer Map ────────────────────────────────────────────────────────────────
+layer_map:
+  Activ:   { layer: 1, datatype: 0 }   # Active/diffusion region
+  GatPoly: { layer: 5, datatype: 0 }   # Polysilicon gate
+
+# ── Rules ─────────────────────────────────────────────────────────────────────
+rules:
+
+  # Act.a — Minimum Activ width
+  # Source: 5_5_activ.drc — activ_drw.width(0.15.um, euclidian)
+  - id: Act.a
+    type: min_width
+    layer: Activ
+    value: 0.15
+
+  # Act.b — Minimum Activ space or notch
+  # Source: 5_5_activ.drc — activ_drw.space(0.21.um, euclidian)
+  - id: Act.b
+    type: min_spacing
+    layer: Activ
+    value: 0.21
+
+  # Gat.a — Minimum GatPoly width
+  # Source: 5_8_gatpoly.drc — gatpoly_drw.width(0.13.um, euclidian)
+  - id: Gat.a
+    type: min_width
+    layer: GatPoly
+    value: 0.13
+
+  # Gat.b — Minimum GatPoly space or notch
+  # Source: 5_8_gatpoly.drc — gatpoly_drw.space(0.18.um, euclidian)
+  - id: Gat.b
+    type: min_spacing
+    layer: GatPoly
+    value: 0.18
