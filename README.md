@@ -77,7 +77,7 @@ RESULT: FAIL - 289 violation(s)
 4. Violations appear as markers on your layout
 
 ## Rule Configuration (YAML)
-Rules are fully config-driven — no hardcoded values in Python:
+Rules are fully config-driven, no hardcoded values in Python:
 
 ```yaml
 pdk: GF180MCU
