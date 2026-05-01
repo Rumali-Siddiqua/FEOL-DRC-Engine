@@ -1,7 +1,7 @@
 """
 FEOL DRC Engine — Python-Based FEOL-Aware, Technology-Agnostic DRC Engine
 ==========================================================================
-Author: Rumali Siddiqua — GSoC 2026
+Author: Rumali Siddiqua
 
 RULES SUPPORTED:
   - min_width     : each polygon must be at least this wide
@@ -240,7 +240,7 @@ def run_drc(gds_path, config_path, cell_override=None, verbose=False):
     rules     = config["rules"]
 
     print("=" * 55)
-    print("  FEOL DRC Engine — GSoC 2026")
+    print("  FEOL DRC Engine")
     print("  Rumali Siddiqua")
     print("=" * 55)
     print(f"\n[CONFIG] PDK    : {config['pdk']}")
